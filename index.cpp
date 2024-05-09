@@ -4,84 +4,6 @@
 #include<algorithm>
 using namespace std;
 
-class   Admin {
-
-private:
-string username;
-string password;
-string name;
-int id ;
-int p;
-string na;
-int q;
-string t;
-
-public:
-Admin(string u, string p, string n, int i){
-username=u;
-password=p;
-name=n;
-id=i;
-
-}
-
-
-
-void createProduct(int type , string name){
-
-if (type== 1){
-
-
-
-    cout<< "enter the price /n";
-    cin>> p;
-    cout<< "enter the nsme /n";
-    cin>> na;
-    cout<< "enter the quantity /n";
-    cin>> q;
-    cout<< "enter the type /n";
-    cin>> t;
-    
-
-
-ElectronicProducts name (p,na,q,t,w,f);
-
-} 
-
-
-
-}
-
-
-
-
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -140,12 +62,12 @@ class Foodproducts : public Product {
     private: 
   string expiryDate;
 public:
-  Foodproducts (int p, string n, int q, string t, string ex){ // constructor of food products
+  Foodproducts (int p, string n, int q, string t){ // constructor of food products
     price=p;
     name=n;
     type=t;
     quantity=q; // quantity
-    expiryDate=ex; 
+   
 };
 };
 //========================================================================================================================
@@ -377,6 +299,97 @@ void addCoupon( Discounts a){
 
    };
    //=========================================================================================================================
+ProductManger <ElectronicProducts> ElectronicManager; 
+ProductManger<Foodproducts> Foodmanager;
+ProductManger<BookProducts> bookmanager;
+
+
+
+class   Admin {
+
+private:
+string username;
+string password;
+string name;
+int id ;
+int p;
+string na;
+int q;
+string t;
+
+public:
+Admin(string u, string p, string n, int i){
+username=u;
+password=p;
+name=n;
+id=i;
+
+}
+
+
+
+void createProduct(int type , string name){
+     cout<< "enter the price \n";
+    cin>> p;
+    cout<< "enter the nsme \n";
+    cin>> na;
+    cout<< "enter the quantity \n";
+    cin>> q;
+    cout<< "enter the type \n";
+    cin>> t;
+
+if (type== 1){
+
+ElectronicProducts name (p,na,q,t);
+ElectronicManager.addproducts(name);
+
+} 
+else if ( type== 2){
+    Foodproducts name (p,na,q,t);
+Foodmanager.addproducts(name);
+}
+else if ( type== 3){
+    BookProducts name (p,na,q,t);
+    bookmanager.addproducts(name);
+    
+}
+
+
+}
+
+// void removeProduct (){
+// string productName;
+// int type;
+
+
+
+// cout<< "enter product name";
+//      cin>> productName ;
+//      cout<< "enter product type";
+//      cin>> type ;
+//     if (type== 1){
+
+// ElectronicProducts name (p,na,q,t);
+// ElectronicManager.removeProduct(productName);
+
+// } 
+// else if ( type== 2){
+//     Foodproducts name (p,na,q,t);
+
+// }
+// else if ( type== 3){
+//     BookProducts name (p,na,q,t);
+    
+// }
+    
+// }
+
+
+
+};
+
+
+
 
 
 
@@ -402,38 +415,42 @@ void addCoupon( Discounts a){
 int main(){
     
     
-    ElectronicProducts E1(21,"LAPTOP",31,"dell", 4 , "dell factory");//product 1
-    ElectronicProducts E2(32,"PHONE",32,"Iphone", 16 , "apple factory");//product 2
-    Foodproducts f1(34,"tuna can",34," canned food" , "11-10-2024");//product 3
-    BookProducts b1 (68, "great gatsby", 700, "book", "drama", "gatsby");//product 4
-   BookProducts b2 (64, "ard el nefaq", 400, "book", "thriller", "ahmed mourad");//product 5
+    ElectronicProducts E1(21,"LAPTOP",31,"dell");//product 1
+    ElectronicProducts E2(32,"PHONE",32,"Iphone");//product 2
+    Foodproducts f1(34,"tuna can",34," canned food" );//product 3
+    BookProducts b1 (68, "great gatsby", 700, "book");//product 4
+   BookProducts b2 (64, "ard el nefaq", 400, "book");//product 5
 
 
-   ProductManger <ElectronicProducts> ElectronicManager; 
-//    ElectronicManager=ElectronicManager+E1; // adding the products to the manager
-//    ElectronicManager=ElectronicManager+E2; // adding the products to the manager
-//    cout<<ElectronicManager;// overridden the << operator to display the manager
+   
+   ElectronicManager=ElectronicManager+E1; // adding the products to the manager
+   ElectronicManager=ElectronicManager+E2; // adding the products to the manager
+//    cout<<ElectronicManager;
+  
+
+   //cout<<ElectronicManager;// overridden the << operator to display the manager
    ElectronicManager.removeProduct(E1);// removing the products to the manager
+   
 //    ElectronicManager=ElectronicManager+E1;// adding the products to the manager
-   cout<<ElectronicManager;// overridden the << operator to display the manager
+//    cout<<ElectronicManager;// overridden the << operator to display the manager
    
     
 ElectronicManager.Sorts("quantity");//sorting the manager
-cout<<ElectronicManager;// overridden the << operator to display the manager
+// overridden the << operator to display the manager
+//cout<<"=====================================";
 
 
-ProductManger<BookProducts> bookmanager;
 bookmanager.addproducts(b1);// adding the products to the manager
 bookmanager.addproducts(b2);// adding the products to the manager
-cout<<bookmanager;// overridden the << operator to display the manager
+//cout<<bookmanager;// overridden the << operator to display the manager
 
  bookmanager.Sorts("name");//sorting the manager
- cout<<bookmanager;// overridden the << operator to display the manager
+ //cout<<bookmanager;// overridden the << operator to display the manager
  
  
-ProductManger<Foodproducts> Foodmanager;
+
 Foodmanager=Foodmanager+f1;// adding the products to the manager
-cout<< Foodmanager;// overridden the << operator to display the manager
+//cout<< Foodmanager;// overridden the << operator to display the manager
 
 
 
@@ -442,11 +459,12 @@ shoppingCarts <Product> cart2;// creating a cart
 shoppingCarts <Product> cart3;// creating a cart 
 cart1.addproducts(b1);// adding the products to the cart
 cart1.addproducts(E1);// adding the products to the cart
+cart1.removeProduct(b1);
 cart1.printCart();//displaying the cart
 cart2.addproducts(E2);// adding the products to the cart
 cart2.addproducts(f1);// adding the products to the cart
 cart2.printCart();//displaying the cart
-
+cout<<"=====================================";
 
 cart3.addproducts(b2);// adding the products to the cart
 cart3.printCart();//displaying the cart
@@ -459,7 +477,9 @@ Discounts d ("-$",30);//creating coupons
 
 
 
-
+//Admin a1 ("admin1", "admin1","admin1",0);
+//a1.createProduct(1,"laptop");
+ElectronicManager.displayProducts();
 
 
 
